@@ -21,6 +21,7 @@ app.put("/alunos/:id", async(req, res) =>{
     const {id} = req.params;
     const {nome, email, senha} = req.body;
     const alunoAtualizado = await pool.query('UPDATE alunos SET nome=$1, email=$2, senha=$3 WERE id=$4', [nome, email, senha, id])
+    res.json(alunoAtualizado.rows[0])
 })
 
 app.delete("/alunos/:id", async (req, res) =>{
